@@ -147,10 +147,10 @@
 
     <div class="px-2 my-6 md:px-8 py-6 bg-white rounded-md shadow-md">
         @if ($authors->count())
-            <div class="rounded-md overflow-x-auto">
+            <div class="overflow-x-auto">
                 <table class="min-w-full text-sm">
                     <thead>
-                        <tr class="font-titles font-semibold bg-black text-white text-left">
+                        <tr class="font-titles font-semibold text-gray-700 bg-gray-200 text-left">
                             <th class="p-4 rounded-tl-sm">Imagen</th>
                             <th class="p-4">Nombre</th>
                             <th class="p-4">Libros</th>
@@ -160,7 +160,7 @@
                     </thead>
                     <tbody>
                         @foreach ($authors as $author)
-                            <tr class="font-bodies @if($loop->index % 2 === 0) bg-gray-200 @endif">
+                            <tr class="font-bodies border-b border-gray-200">
                                 <td class="p-4">
                                     <img class="w-10 h-10 md:w-16 md:h-16 rounded-full border border-gray-400" src="{{ $author->image_url }}" alt="profile">
                                 </td>
@@ -181,7 +181,7 @@
                 </div>
             </div>
         @else
-            <div class="bg-red-200 border-red-600 text-red-600 border-l-4 p-4" role="alert">
+            <div class="p-2 px-4 leading-6 bg-red-200 border-red-600 text-red-600 border-l-4" role="alert">
                 <p class="font-bold">
                     No hay autores
                 </p>

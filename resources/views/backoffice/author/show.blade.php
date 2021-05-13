@@ -139,22 +139,27 @@
             </div>
             <!-- End Modal -->
         </div>
-        <div class="w-full text-center">
-            <h2 class="p-2 mb-4 font-titles font-semibold text-gray-700 bg-gray-200">Autor</h2>
-            <div>
-                <img class="w-16 h-16 md:w-20 md:h-20 mx-auto rounded-full border border-gray-400" 
-                    src="{{ asset($author->image_url) }}" alt="profile_photo">
-                <p class="p-4">{{ $author->name }}</p>
-            </div>
-        </div>
         <div class="md:flex gap-4 mb-0 md:mb-2">
             <div class="w-full text-center">
-                <h2 class="p-2 font-titles font-semibold text-gray-700 bg-gray-200">Fecha de Nacimiento</h2>
-                <p class="p-4">{{ $author->dob }}</p>
+                <h2 class="p-2 font-titles font-semibold text-gray-700 bg-gray-200">Autor</h2>
+                <div class="p-2">
+                    <img class="w-16 h-16 md:w-20 md:h-20 mx-auto rounded-full border border-gray-400" 
+                        src="{{ asset($author->image_url) }}" alt="profile_photo">
+                    <p class="pt-2">{{ $author->name }}</p>
+                </div>
             </div>
             <div class="w-full text-center">
                 <h2 class="p-2 font-titles font-semibold text-gray-700 bg-gray-200">País</h2>
-                <p class="p-4">{!! $flag !!} {{ $author->country }}</p>
+                <div class="flex flex-col justify-center gap-4 h-full p-4">
+                    <p>{!! $flag !!}</p>
+                    <p>{{ $author->country }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="md:flex gap-4">
+            <div class="w-full text-center">
+                <h2 class="p-2 font-titles font-semibold text-gray-700 bg-gray-200">Fecha de Nacimiento</h2>
+                <p class="p-4">{{ $author->dob }}</p>
             </div>
             @if ($author->dod)
                 <div class="w-full text-center">
@@ -168,10 +173,10 @@
     <div class="px-2 my-6 md:px-8 py-6 bg-white rounded-md shadow-md">
         <h2 class="mb-5 font-titles font-semibold text-xl">{{ $books->count() }} libro(s) de <span class="text-red-900">{{ $author->name }}</span></h2>
         @if ($books->count())
-            <div class="rounded-md overflow-x-auto">
+            <div class="overflow-x-auto">
                 <table class="min-w-full text-sm">
                     <thead>
-                        <tr class="font-titles font-semibold bg-black text-white text-left">
+                        <tr class="font-titles font-semibold text-gray-700 bg-gray-200 text-left">
                             <th class="p-4 rounded-tl-sm">Título</th>
                             <th class="p-4">Ejemplares</th>
                             <th class="p-4">Género</td>
@@ -180,7 +185,7 @@
                     </thead>
                     <tbody>
                         @foreach ($books as $book)
-                            <tr class="font-bodies @if($loop->index % 2 === 0) bg-gray-200 @endif">
+                            <tr class="font-bodies border-b border-gray-200">
                                 <td class="p-4">{{ $book->title }}</td>
                                 <td class="p-4">{{ $book->copies->count() }}</td>
                                 <td class="p-4">{{ $book->genre->name }}</td>
@@ -195,7 +200,7 @@
                 </div>
             </div>
         @else
-            <div class="bg-red-200 border-red-600 text-red-600 border-l-4 p-4" role="alert">
+            <div class="p-2 px-4 leading-6 bg-red-200 border-red-600 text-red-600 border-l-4" role="alert">
                 <p class="font-bold">
                     No hay libros
                 </p>

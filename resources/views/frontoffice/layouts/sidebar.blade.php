@@ -1,7 +1,10 @@
-<aside class="w-full min-w-max-content md:w-1/5 md:h-screen bg-white uppercase text-black text-sm font-semibold font-titles shadow-md">
-    <div class="py-6 md:py-8 px-4 text-center">
-        <p>{{ Auth::user()->name }}</p>
-        <small class="font-normal capitalize">{{ Auth::user()->roles->pluck('display_name')->first() }}</small>
+<aside class="w-full md:w-1/4 lg:w-1/5 min-h-full min-w-max-content bg-white uppercase text-black text-sm font-semibold font-titles shadow-md">
+    <div class="flex justify-center items-center gap-4 py-6 md:py-8 px-4 text-center">
+        <img src="{{ asset(Auth::user()->profile->image_url) }}" class="w-16 h-16 md:w-20 md:h-20 rounded-full border border-gray-400" />
+        <div>
+            <p>{{ Auth::user()->name }}</p>
+            <small class="font-normal capitalize">{{ Auth::user()->roles->pluck('display_name')->first() }}</small>
+        </div>
     </div>
     <hr>
     <a href="/reader" class="flex px-4 py-3 text-center hover:text-red-900 hover:bg-gray-200 transition ease-in-out duration-200 border-b border-gray-200">
@@ -20,7 +23,7 @@
         <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm7.753 18.305c-.261-.586-.789-.991-1.871-1.241-2.293-.529-4.428-.993-3.393-2.945 3.145-5.942.833-9.119-2.489-9.119-3.388 0-5.644 3.299-2.489 9.119 1.066 1.964-1.148 2.427-3.393 2.945-1.084.25-1.608.658-1.867 1.246-1.405-1.723-2.251-3.919-2.251-6.31 0-5.514 4.486-10 10-10s10 4.486 10 10c0 2.389-.845 4.583-2.247 6.305z"/></svg>
         Mi perfil
     </a>
-    <a href="#" class="flex px-4 py-3 text-center hover:text-red-900 hover:bg-gray-200 transition ease-in-out duration-200 border-b border-gray-200">
+    <a href="{{ route('user.edit_pass', Auth::user()) }}" class="flex px-4 py-3 text-center hover:text-red-900 hover:bg-gray-200 transition ease-in-out duration-200 border-b border-gray-200">
         <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 17c0 .552-.447 1-1 1s-1-.448-1-1 .447-1 1-1 1 .448 1 1zm3 0c0 .552-.447 1-1 1s-1-.448-1-1 .447-1 1-1 1 .448 1 1zm3 0c0 .552-.447 1-1 1s-1-.448-1-1 .447-1 1-1 1 .448 1 1zm2-7v-4c0-3.313-2.687-6-6-6s-6 2.687-6 6v4h-3v14h18v-14h-3zm-10-4c0-2.206 1.795-4 4-4s4 1.794 4 4v4h-8v-4zm11 16h-14v-10h14v10z"/></svg>
         Modificar contraseña
     </a>

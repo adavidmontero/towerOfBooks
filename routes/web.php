@@ -39,4 +39,6 @@ Route::middleware(['auth', 'role:Reader'])->group(function () {
         return view('frontoffice.reader');
     });
     Route::resource('profile', 'ProfileController');
+    Route::get('edit_pass/{user}/edit', 'UserController@edit_password')->name('user.edit_pass');
+    Route::put('/edit_pass/{user}', 'UserController@update_password')->name('user.update_pass');
 });

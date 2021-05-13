@@ -107,4 +107,27 @@ class UserController extends Controller
     {
         //
     }
+
+    public function edit_password(User $user)
+    {
+        return view('frontoffice.password.edit', compact('user'));
+    }
+
+    public function update_password(Request $request, User $user)
+    {
+        $request->validate([
+            'password' => ['required'],
+            'new_password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        if (Hash::check($request['password'], $user->password)) {
+            $user->update([
+                'password' => Hash::make($request['new_password'])
+            ]);
+
+            return redirect()->back()->with('status', 'Contraseña actualizada exitosamente');
+        } else {
+            return redirect()->back()->with('cancel', 'La contraseña actual que ingresó no es correcta. Operación fallida');
+        }
+    }
 }

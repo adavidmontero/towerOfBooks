@@ -189,7 +189,7 @@
             <div class="w-full text-center">
                 <h2 class="p-2 mb-4 font-titles font-semibold text-gray-700 bg-gray-200">Extracto</h2>
                 <div>
-                    <p class="p-4 text-justify">{{ $book->excerpt }}</p>
+                    <p class="px-2 text-justify">{{ $book->excerpt }}</p>
                 </div>
             </div>
         </div>

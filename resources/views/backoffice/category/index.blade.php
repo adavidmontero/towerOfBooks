@@ -85,10 +85,10 @@
 
     <div class="px-2 my-6 md:px-8 py-6 bg-white rounded-md shadow-md">
         @if ($categories->count())
-            <div class="rounded-md overflow-x-auto">
+            <div class="overflow-x-auto">
                 <table class="min-w-full text-sm">
                     <thead>
-                        <tr class="font-titles font-semibold bg-black text-white text-left">
+                        <tr class="font-titles font-semibold text-gray-700 bg-gray-200 text-left">
                             <th class="p-4">Nombre</th>
                             <th class="p-4"># Libros</th>
                             <th class="p-4">Acciones</th>
@@ -96,7 +96,7 @@
                     </thead>
                     <tbody>
                         @foreach ($categories as $category)
-                            <tr class="font-bodies @if($loop->index % 2 === 0) bg-gray-200 @endif">
+                            <tr class="font-bodies border-b border-gray-200">
                                 <td class="p-4">{{ $category->name }}</td>
                                 <td class="p-4">{{ $category->books->count() }}</td>
                                 <td class="px-4 py-2">

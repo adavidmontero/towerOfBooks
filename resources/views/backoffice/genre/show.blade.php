@@ -76,10 +76,10 @@
             <!-- End Modal -->
         </div>
         @if ($books->count())
-            <div class="rounded-md overflow-x-auto">
+            <div class="overflow-x-auto">
                 <table class="min-w-full text-sm">
                     <thead>
-                        <tr class="font-titles font-semibold bg-black text-white text-left">
+                        <tr class="font-titles font-semibold text-gray-700 bg-gray-200 text-left">
                             <th class="p-4 rounded-tl-sm">Título</th>
                             <th class="p-4">Autor</th>
                             <th class="p-4">Publicación</td>
@@ -88,7 +88,7 @@
                     </thead>
                     <tbody>
                         @foreach ($books as $book)
-                            <tr class="font-bodies @if($loop->index % 2 === 0) bg-gray-200 @endif">
+                            <tr class="font-bodies border-b border-gray-200">
                                 <td class="p-4">{{ $book->title }}</td>
                                 <td class="p-4">{{ $book->author->name }}</td>
                                 <td class="p-4">{{ $book->publication_year }}</td>
@@ -103,7 +103,7 @@
                 </div>
             </div>
         @else
-            <div class="bg-red-200 border-red-600 text-red-600 border-l-4 p-4" role="alert">
+            <div class="p-2 px-4 leading-6 bg-red-200 border-red-600 text-red-600 border-l-4" role="alert">
                 <p class="font-bold">
                     No hay libros
                 </p>
