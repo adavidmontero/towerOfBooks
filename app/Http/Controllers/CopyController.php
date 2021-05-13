@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Copy;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class CopyController extends Controller
 {
@@ -69,7 +71,7 @@ class CopyController extends Controller
             'book_id' => $request['book']
         ]);
 
-        //Guardamos el autor
+        //Guardamos la copia
         $copy->save();
 
         return redirect()->route('copy.index')->with('status', 'Ejemplar guardado exitosamente!');
@@ -83,7 +85,9 @@ class CopyController extends Controller
      */
     public function show(Copy $copy)
     {
-        return view('backoffice.copy.show', compact('copy'));
+        return view('backoffice.copy.show', compact('copy') , [
+            'books' => Book::all()->pluck('title', 'id')
+        ]);
     }
 
     /**
@@ -106,7 +110,41 @@ class CopyController extends Controller
      */
     public function update(Request $request, Copy $copy)
     {
-        //
+        $request->validate([
+            'copy_id' => ['required', 'max:30', 'unique:copies,copy_id,' . $copy->id],
+            'editorial' => 'required|min:2|max:30',
+            'pages' => 'required|numeric',
+            'image' => 'dimensions:min_width=300,min_height=450',
+            'book' => 'required|numeric'
+        ]);
+
+        //Borramos la imagen si el usuario mandó una nueva
+        if ($request->hasFile('image')) {
+            //Verificamos que el archivo exista
+            if (Storage::exists(Str::of($copy['image_url'])->replace('storage', 'public'))) {
+                //Si existe eliminamos la imagen
+                Storage::delete(Str::of($copy['image_url'])->replace('storage', 'public'));
+            }
+
+            //Guardamos la nueva imagen
+            $ruta_imagen = $request->file('image')->store('upload-copies', 'public');
+
+            //Recortamos la imagen para que sea cuadrada
+            $img = Image::make(public_path("storage/{$ruta_imagen}"))->fit(300, 450);
+            //Guardamos ese cambio
+            $img->save();
+        }
+
+        //Guardamos los cambios
+        $copy->update([
+            'copy_id' => $request['copy_id'],
+            'editorial' => $request['editorial'],
+            'pages' => $request['pages'],
+            'image_url' => (isset($ruta_imagen)) ? 'storage/' . $ruta_imagen : $copy['image_url'],
+            'book_id' => $request['book']
+        ]); 
+
+        return redirect()->route('copy.show', $copy)->with('status', 'Ejemplar actualizado exitosamente!');
     }
 
     /**

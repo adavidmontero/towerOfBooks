@@ -15,7 +15,7 @@ class CreateCopiesTable extends Migration
     {
         Schema::create('copies', function (Blueprint $table) {
             $table->id();
-            $table->string('copy_id');
+            $table->string('copy_id')->unique();
             $table->string('editorial');
             $table->unsignedInteger('pages');
             $table->string('image_url');

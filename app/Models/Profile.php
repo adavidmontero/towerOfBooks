@@ -10,7 +10,7 @@ class Profile extends Model
     use HasFactory;
 
     protected $fillable = [
-        'type_id', 'number_id', 'telephone', 'direction', 'user_id'
+        'type_id', 'number_id', 'telephone', 'address', 'description', 'image_url'
     ];
 
     /** RELACIONES */

@@ -1,7 +1,6 @@
-@extends('layouts.app')
+@extends('backoffice.layouts.app')
 
-@section('content')
-
+@section('status')
     @if (session('status'))
         <div class="flex justify-between p-4 bg-orange-500 text-white font-bodies" x-data="{showAlert: true}" x-show="showAlert">
             <span class="mx-auto">{{ session('status') }}</span>
@@ -10,7 +9,9 @@
             </button>
         </div>
     @endif
+@endsection
 
+@section('content')
     @section('breadcrumb-items')
         <a href="{{ route('book.index') }}">Libros</a>
         <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.122 24l-4.122-4 8-8-8-8 4.122-4 11.878 12z"/></svg>

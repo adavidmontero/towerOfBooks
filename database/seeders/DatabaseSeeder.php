@@ -47,14 +47,6 @@ class DatabaseSeeder extends Seeder
 
         $user2->save();
 
-        $user3 = new User([
-            'name' => 'Lily James',
-            'email' => 'correo3@correo3.com',
-            'password' => Hash::make('123456789')
-        ]);
-
-        $user3->save();
-
         //Creacion de roles
         $adminRole = Role::create(['name' => 'Admin', 'display_name' => 'Administrador']);
         $secretaryRole = Role::create(['name' => 'Secretary', 'display_name' => 'Secretario']);
@@ -93,6 +85,5 @@ class DatabaseSeeder extends Seeder
         ]); */
 
         $user2->assignRole($secretaryRole);
-        $user3->assignRole($readerRole);
     }
 }

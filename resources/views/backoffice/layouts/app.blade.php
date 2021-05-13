@@ -90,8 +90,19 @@
                 </nav>
             </div>
         </header>
+
+        @yield('status')
+        
+        <div class="md:flex">
+            @include('backoffice.layouts.sidebar')
+
+            <main class="w-full md:w-3/4 lg:w-4/5 py-4 md:px-6 md:mt-2">
+
+                @include('layouts.breadcrumbs')
                 
-        @yield('content')
+                @yield('content')
+            </main>
+        </div>
     </div>
 </body>
 </html>

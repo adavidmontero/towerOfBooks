@@ -1,7 +1,6 @@
-@extends('layouts.app')
+@extends('backoffice.layouts.app')
 
-@section('content')
-
+@section('status')
     @if (session('status'))
         <div class="flex justify-between p-4 bg-green-500 text-white font-bodies" x-data="{showAlert: true}" x-show="showAlert">
             <span class="mx-auto">{{ session('status') }}</span>
@@ -10,7 +9,9 @@
             </button>
         </div>
     @endif
+@endsection
 
+@section('content')
     @section('breadcrumb-items')
         <a href="{{ route('category.index') }}" class="font-semibold">Subgéneros</a>
     @endsection

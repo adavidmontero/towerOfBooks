@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Events\UserWasCreated;
+use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -64,10 +66,32 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $readerRole = Role::all()->where('name', '=', 'Reader');
+
+        $user->assignRole($readerRole);
+
+        //Crear perfil si el usuario tiene el rol reader
+        if ($user->hasRole('Reader')) {
+            UserWasCreated::dispatch($user);
+        }
+
+        return $user;
+    }
+
+    public function redirectPath()
+    {
+        if (auth()->user()->hasRole('Reader')) {
+            $redirectTo = '/reader';
+        } else {
+            $redirectTo = '/home';
+        }
+
+        return $redirectTo;
     }
 }

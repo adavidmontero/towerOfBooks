@@ -38,4 +38,5 @@ Route::middleware(['auth', 'role:Reader'])->group(function () {
     Route::get('/reader', function() {
         return view('frontoffice.reader');
     });
+    Route::resource('profile', 'ProfileController');
 });
