@@ -18,6 +18,8 @@ class BookController extends Controller
      */
     public function index()
     {
+        $this->authorize('view', new Book);
+
         $books = Book::paginate(8);
         $genres = Genre::all();
         $authors = Author::all();
@@ -49,8 +51,11 @@ class BookController extends Controller
      */
     public function store(StoreBookRequest $request, Book $book)
     {
+        $this->authorize('create', $book);
+
         $book->saveBook($request);
-        return redirect()->route('book.index')->with('status', '¡Libro guardado exitosamente!');
+
+        return redirect()->route('book.index')->with('success', '¡Libro guardado exitosamente!');
     }
 
     /**
@@ -61,6 +66,8 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
+        $this->authorize('view', $book);
+
         $genres = Genre::all();
         $authors = Author::all();
         $categories = Category::all();
@@ -87,8 +94,11 @@ class BookController extends Controller
      */
     public function update(UpdateBookRequest $request, Book $book)
     {
+        $this->authorize('update', $book);
+
         $book->updateBook($book, $request);
-        return redirect()->route('book.show', $book)->with('status', '¡Libro actualizado exitosamente!');
+
+        return redirect()->route('book.show', $book)->with('success', '¡Libro actualizado exitosamente!');
     }
 
     /**

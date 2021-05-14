@@ -16,7 +16,7 @@ class RoleController extends Controller
     public function index()
     {
         $this->authorize('view', new Role);
-
+        
         return view('backoffice.roles.index', [
             'roles' => Role::paginate(8),
             'permissions' => Permission::all()
@@ -42,13 +42,13 @@ class RoleController extends Controller
     public function store(Request $request, Role $role)
     {
         //Validamos que usuario tenga el permiso
-        $this->authorize('create');
+        $this->authorize('create', $role);
 
         //Guardamos el rol
         $role->saveRole($request);
 
         //Redirigimos a una ruta con un mensaje
-        return redirect()->route('role.index')->with('status', '¡Rol guardado exitosamente!');
+        return redirect()->route('role.index')->with('success', '¡Rol guardado exitosamente!');
     }
 
     /**
@@ -94,7 +94,7 @@ class RoleController extends Controller
         $role->updateRole($role, $request);
 
         //Redirigimos a ruta determinada con un mensaje
-        return redirect()->route('role.show', $role)->with('status', '¡Rol actualizado exitosamente!');
+        return redirect()->route('role.show', $role)->with('success', '¡Rol actualizado exitosamente!');
     }
 
     /**

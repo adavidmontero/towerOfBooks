@@ -1,4 +1,4 @@
-<aside class="w-full md:w-1/4 lg:w-1/5 min-h-full min-w-max-content bg-white uppercase text-black text-sm font-semibold font-titles shadow-md">
+<aside class="w-full md:w-1/4 lg:w-1/5 min-h-full md:min-w-max-content bg-white uppercase text-black text-sm font-semibold font-titles shadow-md">
     <div class="flex justify-center items-center gap-4 py-6 md:py-8 px-4 text-center">
         <img src="{{ asset(Auth::user()->profile->image_url) }}" class="w-16 h-16 md:w-20 md:h-20 rounded-full border border-gray-400" />
         <div>
@@ -27,12 +27,38 @@
         <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 17c0 .552-.447 1-1 1s-1-.448-1-1 .447-1 1-1 1 .448 1 1zm3 0c0 .552-.447 1-1 1s-1-.448-1-1 .447-1 1-1 1 .448 1 1zm3 0c0 .552-.447 1-1 1s-1-.448-1-1 .447-1 1-1 1 .448 1 1zm2-7v-4c0-3.313-2.687-6-6-6s-6 2.687-6 6v4h-3v14h18v-14h-3zm-10-4c0-2.206 1.795-4 4-4s4 1.794 4 4v4h-8v-4zm11 16h-14v-10h14v10z"/></svg>
         Modificar contraseña
     </a>
-    <a href="{{ route('logout') }}" class="flex px-4 py-3 text-center hover:text-red-900 hover:bg-gray-200 transition ease-in-out duration-200 border-b border-gray-200"
-        onclick="event.preventDefault(); if(window.confirm('¿Deseas salir de la aplicación?')) { document.getElementById('logout-form').submit(); }">
-        <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 12h-4v-12h4v12zm4.213-10.246l-1.213 1.599c2.984 1.732 5 4.955 5 8.647 0 5.514-4.486 10-10 10s-10-4.486-10-10c0-3.692 2.016-6.915 5-8.647l-1.213-1.599c-3.465 2.103-5.787 5.897-5.787 10.246 0 6.627 5.373 12 12 12s12-5.373 12-12c0-4.349-2.322-8.143-5.787-10.246z"/></svg>
-        Cerrar sesión
-    </a>
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-        {{ csrf_field() }}
-    </form>
+    <div x-data="{ modalOpen: false }">
+        <button @click="modalOpen = !modalOpen" class="flex w-full px-4 py-3 text-center uppercase text-black text-sm font-semibold font-titles hover:text-red-900 hover:bg-gray-200 transition ease-in-out duration-200 border-b border-gray-200 focus:outline-none">
+            <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 12h-4v-12h4v12zm4.213-10.246l-1.213 1.599c2.984 1.732 5 4.955 5 8.647 0 5.514-4.486 10-10 10s-10-4.486-10-10c0-3.692 2.016-6.915 5-8.647l-1.213-1.599c-3.465 2.103-5.787 5.897-5.787 10.246 0 6.627 5.373 12 12 12s12-5.373 12-12c0-4.349-2.322-8.143-5.787-10.246z"/></svg>
+            Cerrar sesión
+        </button>
+        <div x-show.transition.opacity="modalOpen" class="fixed top-0 left-0 w-full h-full">
+            <div class="absolute w-full h-full inset-0 bg-gray-600 opacity-75">
+            </div>
+            <div class="flex items-center justify-center h-screen pt-4 px-4 pb-20 font-bodies text-center my-10">
+                <div class="w-full transform transition-all md:w-2/3 lg:w-1/2" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+                    <div class="flex items-center justify-center p-4 rounded-t-lg text-gray-700 bg-red-900">
+                        <img src="{{ asset('./images/2909611-ffffff.svg') }}" class="w-10 h-10 -mt-1">
+                        <p class="font-logo font-normal normal-case text-3xl text-white">{{ config('app.name', 'Laravel') }}</p>
+                        <img src="{{ asset('./images/2909611-ffffff.svg') }}" class="w-10 h-10 -mt-1">
+                    </div>
+                    <div class="p-4 bg-white">
+                        <h2 class="font-semibold normal-case">¿Deseas salir de la aplicación?</h2>
+                    </div>
+                    <div class="md:flex gap-4 p-4 rounded-b-lg bg-gray-200">
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                            class="block w-full md:w-1/2 normal-case rounded-md shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                            Sí
+                        </a>
+                        <button @click="modalOpen = !modalOpen" type="button" class="w-full md:w-1/2 mt-2 md:mt-0 rounded-md border border-gray-300 shadow-sm px-4 py-2 text-base font-medium text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                            No
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+            {{ csrf_field() }}
+        </form>
+    </div>
 </aside>

@@ -4,11 +4,11 @@
 <main class="sm:container sm:mx-auto sm:max-w-lg sm:mt-10">
     <div class="flex">
         <div class="w-full">
-            <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg">
+            <section class="flex flex-col p-6 break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg">
 
-                <header class="font-semibold text-center bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
+                <header class="font-semibold text-center text-sm bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8">
                     {{-- <span class="font-logo text-3xl block pb-2">{{ config('app.name', 'Laravel') }}</span> --}}
-                    {{ __('Login') }}
+                    {{ __('Login') }} a TowerOfBooks
                 </header>
 
                 <form class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8" method="POST" action="{{ route('login') }}">

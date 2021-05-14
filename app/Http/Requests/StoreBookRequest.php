@@ -26,7 +26,7 @@ class StoreBookRequest extends FormRequest
     {
         return [
             'title' => 'required|max:50',
-            'excerpt' => 'max:300',
+            'excerpt' => 'max:350',
             'publication_year' => ['numeric', 'gte:0', 'lte:' . Carbon::now()->format('Y')],
             'genre' => 'required|numeric',
             'author' => 'required|numeric',

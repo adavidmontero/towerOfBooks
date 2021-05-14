@@ -19,6 +19,7 @@ class CreateCopiesTable extends Migration
             $table->string('editorial');
             $table->unsignedInteger('pages');
             $table->string('image_url');
+            $table->string('state')->default('Disponible');
             $table->foreignId('book_id')->constrained();
             $table->timestamps();
         });

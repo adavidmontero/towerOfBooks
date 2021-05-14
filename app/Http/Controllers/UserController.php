@@ -50,7 +50,7 @@ class UserController extends Controller
 
         $user->saveUser($request);
 
-        return redirect()->route('user.index')->with('status', '¡Usuario guardado exitosamente!');
+        return redirect()->route('user.index')->with('success', '¡Usuario guardado exitosamente!');
     }
 
     /**
@@ -94,7 +94,7 @@ class UserController extends Controller
 
         $user->updateUser($user, $request);
 
-        return redirect()->route('user.show', $user)->with('status', '¡Usuario actualizado exitosamente!');
+        return redirect()->route('user.show', $user)->with('success', '¡Usuario actualizado exitosamente!');
     }
 
     /**
@@ -125,9 +125,9 @@ class UserController extends Controller
                 'password' => Hash::make($request['new_password'])
             ]);
 
-            return redirect()->back()->with('status', 'Contraseña actualizada exitosamente');
+            return redirect()->back()->with('success', '¡Contraseña actualizada exitosamente!');
         } else {
-            return redirect()->back()->with('cancel', 'La contraseña actual que ingresó no es correcta. Operación fallida');
+            return redirect()->back()->with('failure', '¡Su contraseña no coincide con la que ingresó. Operación fallida!');
         }
     }
 }

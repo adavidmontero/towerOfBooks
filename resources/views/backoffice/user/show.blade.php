@@ -1,21 +1,16 @@
 @extends('backoffice.layouts.app')
 
 @section('status')
-    @if (session('status'))
-        <div class="flex justify-between p-4 bg-orange-500 text-white font-bodies" x-data="{showAlert: true}" x-show="showAlert">
-            <span class="mx-auto">{{ session('status') }}</span>
-            <button @click="showAlert = !showAlert" class="text-center focus:outline-none">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-        </div>
+    @if (session('success'))
+        @include('layouts.message', ['message' => session('success'), 'color' => 'orange'])
     @endif
 @endsection
 
 @section('content')
     @section('breadcrumb-items')
-        <a href="{{ route('copy.index') }}">Ejemplares</a>
+        <a href="{{ route('user.index') }}">Usuarios</a>
         <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.122 24l-4.122-4 8-8-8-8 4.122-4 11.878 12z"/></svg>
-        <a href="{{ route('copy.index') }}" class="font-semibold">Vista del ejemplar</a>
+        <a href="{{ route('user.show', $user) }}" class="font-semibold">Vista del usuario</a>
     @endsection
 
     <div class="my-6 px-2 md:px-8 py-6 bg-white rounded-md shadow-md">

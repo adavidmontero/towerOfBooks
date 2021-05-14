@@ -78,7 +78,7 @@ class RegisterController extends Controller
 
         //Crear perfil si el usuario tiene el rol reader
         if ($user->hasRole('Reader')) {
-            UserWasCreated::dispatch($user);
+            UserWasCreated::dispatch($user->id);
         }
 
         return $user;

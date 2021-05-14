@@ -26,11 +26,12 @@
 <body class="bg-gray-200 h-screen antialiased leading-none font-sans">
     <div id="app">
         <header class="bg-red-900 py-5">
-            <div class="container mx-auto flex justify-between items-center px-4">
+            <div class="container mx-auto flex justify-between items-center px-4 md:px-0">
                 <div>
                     <a href="{{ url('/book') }}" class="flex items-center font-logo text-3xl text-white">
-                        <img src="{{ asset('./images/2909611-ffffff.svg') }}" class="w-10 h-10 -mt-2">
+                        <img src="{{ asset('./images/2909611-ffffff.svg') }}" class="w-10 h-10 -mt-1">
                         {{ config('app.name', 'Laravel') }}
+                        <img src="{{ asset('./images/2909611-ffffff.svg') }}" class="w-10 h-10 -mt-1">
                     </a>
                 </div>
                 <nav class="space-x-4 text-gray-300 text-sm sm:text-base">
@@ -40,13 +41,10 @@
                             <a class="text-white hover:text-gray-300" href="{{ route('register') }}">{{ __('Register') }}</a>
                         @endif
                     @else
-                        <div class="flex items-center font-titles">
-                            {{-- <span class="p-2 mr-2 text-white font-bodies tracking-wide">{{ Auth::user()->name }}</span> --}}
-                            
+                        <div class="flex items-center font-titles">     
                             <div class="flex justify-center">
                                 <div x-data="{ dropdownOpen: false }" class="relative">
                                     <button @click="dropdownOpen = !dropdownOpen" class="flex items-center rounded-sm bg-white text-sm font-semibold text-black p-2 hover:text-red-900 focus:outline-none">
-                                        <span class="px-1">{{ Auth::user()->name }}</span>
                                         <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                         </svg>
@@ -78,14 +76,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        {{-- <a href="{{ route('logout') }}"
-                           class="text-white hover:text-gray-300"
-                           onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-                            {{ csrf_field() }}
-                        </form> --}}
                     @endguest
                 </nav>
             </div>
@@ -93,7 +83,7 @@
 
         @yield('status')
         
-        <div class="md:flex">
+        <div class="md:flex min-h-screen">
             @include('backoffice.layouts.sidebar')
 
             <main class="w-full md:w-3/4 lg:w-4/5 py-4 md:px-6 md:mt-2">

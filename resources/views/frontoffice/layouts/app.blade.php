@@ -25,32 +25,23 @@
 </head>
 <body class="bg-gray-200 h-screen antialiased leading-none font-sans">
     <div id="app">
-        <header class="bg-red-900 py-5">
-            <div class="container mx-auto flex justify-between items-center px-4">
-                <div>
-                    <a href="{{ url('/book') }}" class="flex items-center font-logo text-3xl text-white">
-                        <img src="{{ asset('./images/2909611-ffffff.svg') }}" class="w-10 h-10 -mt-2">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-                <nav class="space-x-4 text-gray-300 text-sm sm:text-base">
-                    @guest
-                        <a class="text-white hover:text-gray-300" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        @if (Route::has('register'))
-                            <a class="text-white hover:text-gray-300" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        @endif
-                    @endguest
-                </nav>
+        <header class="bg-red-900 py-4">
+            <div class="container mx-auto flex justify-center">
+                <a href="{{ url('/book') }}" class="flex items-center font-logo text-3xl text-white">
+                    <img src="{{ asset('./images/2909611-ffffff.svg') }}" class="w-10 h-10 -mt-1">
+                    {{ config('app.name', 'Laravel') }}
+                    <img src="{{ asset('./images/2909611-ffffff.svg') }}" class="w-10 h-10 -mt-1">
+                </a>
             </div>
         </header>
 
         @yield('status')
         
-        <div class="md:flex">
+        <div class="md:flex min-h-screen">
 
             @include('frontoffice.layouts.sidebar')
     
-            <main class="w-full md:w-4/5 p-4">
+            <main class="w-full md:w-3/4 lg:w-4/5 py-4 md:px-6 md:mt-2">
                 @yield('content')
             </main>
         </div>

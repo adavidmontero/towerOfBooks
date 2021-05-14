@@ -14,6 +14,8 @@ class GenreController extends Controller
      */
     public function index()
     {
+        $this->authorize('view', new Genre);
+
         return view('backoffice.genre.index', [
             'genres' => Genre::paginate(8)
         ]);
@@ -35,16 +37,13 @@ class GenreController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Genre $genre)
     {
-        $request->validate([
-            'name' => 'required|min:4|max:20'
-        ]);
+        $this->authorize('create', $genre);
 
-        $genre = new Genre($request->all());
-        $genre->save();
+        $genre->saveGenre($request);
 
-        return redirect()->route('genre.index')->with('status', '¡Género guardado exitosamente!');
+        return redirect()->route('genre.index')->with('success', '¡Género guardado exitosamente!');
     }
 
     /**
@@ -55,6 +54,8 @@ class GenreController extends Controller
      */
     public function show(Genre $genre)
     {
+        $this->authorize('view', $genre);
+
         $books = $genre->books()->paginate(8);
 
         return view('backoffice.genre.show', compact('genre', 'books'));
@@ -80,13 +81,11 @@ class GenreController extends Controller
      */
     public function update(Request $request, Genre $genre)
     {
-        $request->validate([
-            'name' => 'required|min:4|max:20'
-        ]);
+        $this->authorize('update', $genre);
 
-        $genre->update($request->all());
+        $genre->updateGenre($request, $genre);
 
-        return redirect()->route('genre.show', $genre)->with('status', '¡Género actualizado exitosamente!');
+        return redirect()->route('genre.show', $genre)->with('success', '¡Género actualizado exitosamente!');
     }
 
     /**

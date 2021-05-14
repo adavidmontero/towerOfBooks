@@ -61,6 +61,7 @@ class User extends Authenticatable
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'roles' => ['required']
         ]);
 
         //Asignamos a cada atributo los valores validados
@@ -81,7 +82,7 @@ class User extends Authenticatable
 
         //Crear perfil si el usuario tiene el rol reader
         if ($user->hasRole('Reader')) {
-            UserWasCreated::dispatch($user);
+            UserWasCreated::dispatch($user['id']);
         }
     }
 

@@ -14,8 +14,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        $this->authorize('view', new Category);
+
         $categories = Category::paginate(8);
-        
+
         return view('backoffice.category.index', compact('categories'));
     }
 
@@ -35,17 +37,13 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Category $category)
     {
-        $request->validate([
-            'name' => 'required|min:4|max:20'
-        ]);
+        $this->authorize('create', $category);
 
-        $category = new Category($request->all());
-        
-        $category->save();
+        $category->saveCategory($request);
 
-        return redirect()->route('category.index')->with('status', '¡Subgénero guardado exitosamente!');
+        return redirect()->route('category.index')->with('success', '¡Subgénero guardado exitosamente!');
     }
 
     /**
@@ -56,6 +54,8 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
+        $this->authorize('view', $category);
+
         $books = $category->books()->paginate(8);
 
         return view('backoffice.category.show', compact('category', 'books'));
@@ -81,13 +81,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $request->validate([
-            'name' => 'required|min:4|max:20'
-        ]);
+        $this->authorize('update', $category);
 
-        $category->update($request->all());
+        $category->updateCategory($request, $category);
 
-        return redirect()->route('category.show', $category)->with('status', '¡Subgénero actualizado exitosamente!');
+        return redirect()->route('category.show', $category)->with('success', '¡Subgénero actualizado exitosamente!');
     }
 
     /**

@@ -73,34 +73,8 @@ class ProfileController extends Controller
      */
     public function update(Request $request, Profile $profile)
     {
-        //Borramos la imagen si el usuario mandó una nueva
-        if ($request->hasFile('image')) {
-            //Verificamos que el archivo exista
-            if (Storage::exists(Str::of($profile['image_url'])->replace('storage', 'public'))) {
-                //Si existe eliminamos la imagen
-                Storage::delete(Str::of($profile['image_url'])->replace('storage', 'public'));
-            }
-
-            //Guardamos la nueva imagen
-            $ruta_imagen = $request->file('image')->store('upload-profile', 'public');
-
-            //Recortamos la imagen para que sea cuadrada
-            $img = Image::make(public_path("storage/{$ruta_imagen}"))->fit(300, 300);
-            //Guardamos ese cambio
-            $img->save();
-        }
-
-        //Guardamos los cambios
-        $profile->update([
-            'type_id' => $request['type_id'],
-            'number_id' => $request['number_id'],
-            'telephone' => $request['telephone'],
-            'address' => $request['address'],
-            'description' => $request['description'],
-            'image_url' => (isset($ruta_imagen)) ? 'storage/' . $ruta_imagen : $profile['image_url'],
-        ]);
-
-        return redirect()->route('profile.show', $profile)->with('status', 'Perfil actualizado exitosamente!');
+        $profile->updateProfile($request, $profile);
+        return redirect()->route('profile.show', $profile)->with('success', '¡Perfil actualizado exitosamente!');
     }
 
     /**
