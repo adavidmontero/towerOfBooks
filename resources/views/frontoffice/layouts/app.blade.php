@@ -25,7 +25,7 @@
 </head>
 <body class="bg-gray-200 h-screen antialiased leading-none font-sans">
     <div id="app">
-        <header class="bg-red-900 py-4">
+        {{-- <header class="bg-red-900 py-4 shadow-md">
             <div class="container mx-auto flex justify-center">
                 <a href="{{ url('/book') }}" class="flex items-center font-logo text-3xl text-white">
                     <img src="{{ asset('./images/2909611-ffffff.svg') }}" class="w-10 h-10 -mt-1">
@@ -33,15 +33,14 @@
                     <img src="{{ asset('./images/2909611-ffffff.svg') }}" class="w-10 h-10 -mt-1">
                 </a>
             </div>
-        </header>
+        </header> --}}
 
         @yield('status')
         
-        <div class="md:flex min-h-screen">
-
+        <div>
             @include('frontoffice.layouts.sidebar')
     
-            <main class="w-full md:w-3/4 lg:w-4/5 py-4 md:px-6 md:mt-2">
+            <main class="md:ml-72 px-4 py-4 h-full md:mt-2">
                 @yield('content')
             </main>
         </div>

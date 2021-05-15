@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Copy;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -36,7 +37,9 @@ Route::middleware(['auth', 'role:Admin|Secretary'])->group(function () {
 
 Route::middleware(['auth', 'role:Reader'])->group(function () {
     Route::get('/reader', function() {
-        return view('frontoffice.reader');
+        return view('frontoffice.reader', [
+            'copies' => Copy::paginate(20)
+        ]);
     });
     Route::resource('profile', 'ProfileController');
     Route::get('edit_pass/{user}/edit', 'UserController@edit_password')->name('user.edit_pass');

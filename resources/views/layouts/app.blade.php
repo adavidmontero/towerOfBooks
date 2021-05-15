@@ -25,7 +25,7 @@
 </head>
 <body class="bg-gray-200 h-screen antialiased leading-none font-sans">
     <div id="app">
-        <header class="bg-red-900 py-5">
+        <header class="bg-red-900 py-5 shadow-md">
             <div class="container mx-auto flex justify-between items-center px-4">
                 <div>
                     <a href="{{ url('/book') }}" class="flex items-center font-logo text-3xl text-white">

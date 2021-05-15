@@ -1,5 +1,9 @@
-<aside class="w-full md:w-1/4 lg:w-1/5 min-h-full md:min-w-max-content bg-white uppercase text-black text-sm font-semibold font-titles shadow-md">
-    <div class="flex justify-center items-center gap-4 py-6 md:py-8 px-4 text-center">
+<aside class="w-full relative h-auto md:fixed md:w-72 md:top-0 md:h-full bg-white uppercase text-black text-sm font-semibold font-titles shadow-md">
+    <div class="flex justify-center items-center py-2 md:py-4 px-4 font-logo font-normal normal-case text-3xl bg-red-900 text-white text-center shadow-md">
+        {{ config('app.name', 'Laravel') }}
+    </div>
+    <hr>
+    <div class="flex justify-center items-center gap-4 py-4 md:py-6 px-2 text-center">
         <img src="{{ asset(Auth::user()->profile->image_url) }}" class="w-16 h-16 md:w-20 md:h-20 rounded-full border border-gray-400" />
         <div>
             <p>{{ Auth::user()->name }}</p>
@@ -10,6 +14,10 @@
     <a href="/reader" class="flex px-4 py-3 text-center hover:text-red-900 hover:bg-gray-200 transition ease-in-out duration-200 border-b border-gray-200">
         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
         Inicio
+    </a>
+    <a href="#" class="flex px-4 py-3 text-center hover:text-red-900 hover:bg-gray-200 transition ease-in-out duration-200 border-b border-gray-200">
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+        Mis solicitudes
     </a>
     <a href="#" class="flex px-4 py-3 text-center hover:text-red-900 hover:bg-gray-200 transition ease-in-out duration-200 border-b border-gray-200">
         <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 16.78c.002-1.8.003-2.812 0-4.027-.001-.417.284-.638.567-.638.246 0 .49.168.538.52.19 1.412.411 2.816.547 3.146.042.099.113.141.185.141.123 0 .244-.123.206-.284-.255-1.069-.493-2.519-.607-3.334 1.904 1.854 2.314 2.005 2.192 3.548-.089 1.129-.52 2.508.373 4.255l-2.563.893c-.062-.314-.138-.637-.226-.933-.515-1.721-1.214-1.752-1.212-3.287zm-16.567-4.665c-.246 0-.49.168-.538.52-.19 1.412-.411 2.816-.547 3.146-.042.099-.113.141-.185.141-.123 0-.244-.123-.206-.284.255-1.069.493-2.519.607-3.334-1.904 1.854-2.314 2.005-2.192 3.548.09 1.128.521 2.507-.372 4.254l2.562.894c.062-.314.138-.637.226-.933.515-1.721 1.214-1.752 1.212-3.287-.002-1.8-.003-2.812 0-4.027.001-.418-.285-.638-.567-.638zm1.567.642zm14.001 2.637c-2.354.194-4.35.62-6.001 1.245v-9.876l.057-.036c1.311-.816 3.343-1.361 5.943-1.603v7.633c-.002-.459.165-.881.469-1.186.377-.378.947-.562 1.531-.391v-8.18c-3.438.105-6.796.658-9 2.03-2.204-1.372-5.562-1.925-9-2.03v8.18c.583-.17 1.153.012 1.531.391.304.305.471.726.469 1.184v-7.631c2.6.242 4.632.788 5.943 1.604l.057.035v9.876c-1.651-.626-3.645-1.052-6-1.246v1.385c0 .234-.021.431-.046.622 2.249.193 4.372.615 6.046 1.381.638.292 1.362.291 2 0 1.675-.766 3.798-1.188 6.046-1.381-.025-.191-.046-.386-.046-.621l.001-1.385zm-12.001-2.426c1.088.299 2.122.64 3 .968v1.064c-.823-.345-1.879-.705-3-1.015v-1.017zm0-1.014c1.121.31 2.177.67 3 1.015v-1.064c-.878-.328-1.912-.669-3-.968v1.017zm0-5.09v1.017c1.121.311 2.177.67 3 1.015v-1.064c-.878-.328-1.912-.669-3-.968zm0 3.058c1.121.31 2.177.67 3 1.015v-1.063c-.878-.328-1.912-.669-3-.968v1.016zm10 4.063c-1.121.31-2.177.67-3 1.015v-1.064c.878-.328 1.912-.669 3-.968v1.017zm0-3.048c-1.088.299-2.122.64-3 .968v1.064c.823-.345 1.879-.705 3-1.015v-1.017zm-3-3.105v1.064c.823-.345 1.879-.705 3-1.015v-1.017c-1.088.299-2.122.64-3 .968zm3 1.074c-1.088.299-2.122.64-3 .968v1.064c.823-.345 1.879-.705 3-1.015v-1.017z"/></svg>
@@ -35,22 +43,20 @@
         <div x-show.transition.opacity="modalOpen" class="fixed top-0 left-0 w-full h-full">
             <div class="absolute w-full h-full inset-0 bg-gray-600 opacity-75">
             </div>
-            <div class="flex items-center justify-center h-screen pt-4 px-4 pb-20 font-bodies text-center my-10">
+            <div class="flex items-center justify-center h-screen pt-4 px-4 pb-20 font-bodies text-center my-10 z-50">
                 <div class="w-full transform transition-all md:w-2/3 lg:w-1/2" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
                     <div class="flex items-center justify-center p-4 rounded-t-lg text-gray-700 bg-red-900">
-                        <img src="{{ asset('./images/2909611-ffffff.svg') }}" class="w-10 h-10 -mt-1">
                         <p class="font-logo font-normal normal-case text-3xl text-white">{{ config('app.name', 'Laravel') }}</p>
-                        <img src="{{ asset('./images/2909611-ffffff.svg') }}" class="w-10 h-10 -mt-1">
                     </div>
                     <div class="p-4 bg-white">
                         <h2 class="font-semibold normal-case">¿Deseas salir de la aplicación?</h2>
                     </div>
                     <div class="md:flex gap-4 p-4 rounded-b-lg bg-gray-200">
                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                            class="block w-full md:w-1/2 normal-case rounded-md shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                            class="block w-full md:w-1/2 normal-case rounded-md shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">
                             Sí
                         </a>
-                        <button @click="modalOpen = !modalOpen" type="button" class="w-full md:w-1/2 mt-2 md:mt-0 rounded-md border border-gray-300 shadow-sm px-4 py-2 text-base font-medium text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                        <button @click="modalOpen = !modalOpen" type="button" class="w-full md:w-1/2 mt-2 md:mt-0 rounded-md border border-gray-300 shadow-sm px-4 py-2 text-base font-medium text-gray-900 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">
                             No
                         </button>
                     </div>

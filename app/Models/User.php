@@ -102,4 +102,11 @@ class User extends Authenticatable
         //Asignamos todos los permisos al usuario
         $user->syncPermissions($request->permissions);
     }
+
+    /* public static function totalReader(User $user)
+    {
+        return $user->whereHas('roles', function($q) {
+            $q->where('name', 'Reader');
+        })->count();
+    } */
 }

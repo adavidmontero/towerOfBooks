@@ -1,5 +1,5 @@
-<aside class="w-full md:w-1/4 lg:w-1/5 min-h-full md:min-w-max-content bg-white uppercase text-black text-sm font-semibold font-titles shadow-md">
-    <div class="py-6 md:py-8 px-4 text-center">
+<aside class="w-full relative h-auto md:fixed md:w-72 md:top-20 md:h-full bg-white uppercase text-black text-sm font-semibold font-titles shadow-md">
+    <div class="py-4 md:py-6 px-4 text-center">
         <p>{{ Auth::user()->name }}</p>
         <small class="font-normal capitalize">{{ Auth::user()->roles->pluck('display_name')->first() }}</small>
     </div>
