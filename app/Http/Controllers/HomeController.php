@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Book;
 use App\Models\Copy;
 use App\Models\User;
@@ -47,7 +48,7 @@ class HomeController extends Controller
             'authors' => Author::count(),
             'genres' => Genre::count(),
             'categories' => Category::count(),
-            'chart' => $chart
+            'chart' => $chart,
         ]);
     }
 }

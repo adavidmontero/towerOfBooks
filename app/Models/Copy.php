@@ -24,6 +24,12 @@ class Copy extends Model
         return $this->belongsTo(Book::class);
     }
 
+    // 1 copia tiene muchos prestamos
+    public function loans()
+    {
+        return $this->hasMany(Loan::class);
+    }
+
     /** ALMACENAMIENTO */
 
     public function saveCopy($request)

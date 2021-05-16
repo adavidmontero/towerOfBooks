@@ -2,9 +2,9 @@
 
 @section('status')
     @if (session('success'))
-        @include('layouts.message', ['message' => session('success'), 'color' => 'green'])
+        @include('frontoffice.layouts.message', ['message' => session('success'), 'color' => 'green'])
     @elseif (session('failure'))
-        @include('layouts.message', ['message' => session('failure'), 'color' => 'red'])
+        @include('frontoffice.layouts.message', ['message' => session('failure'), 'color' => 'red'])
     @endif
 @endsection
 

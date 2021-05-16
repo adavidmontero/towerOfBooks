@@ -2,7 +2,7 @@
 
 @section('status')
     @if (session('success'))
-        @include('layouts.message', ['message' => session('success'), 'color' => 'orange'])
+        @include('backoffice.layouts.message', ['message' => session('success'), 'color' => 'orange'])
     @endif
 @endsection
 

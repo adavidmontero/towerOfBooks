@@ -27,10 +27,10 @@
 </head>
 <body class="bg-gray-200 h-screen antialiased leading-none font-sans">
     <div id="app">
-        <header class="w-full relative h-auto md:top-0 md:fixed md:h-20 bg-red-900 py-5 shadow-md space-x-4">
+        <header class="w-full relative h-auto md:top-0 md:fixed md:h-20 bg-red-900 py-5 space-x-4">
             <div class="container mx-auto flex justify-between items-center px-4 md:px-0">
                 <div>
-                    <a href="{{ url('/book') }}" class="flex items-center font-logo text-3xl text-white">
+                    <a href="{{ url('/') }}" class="flex items-center font-logo text-3xl text-white">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
@@ -80,13 +80,13 @@
                 </nav>
             </div>
         </header>
-
-        @yield('status')
         
         <div>
             @include('backoffice.layouts.sidebar')
-                    
-            <main class="md:ml-72 px-4 py-4 h-full md:mt-2">
+            
+            <main class="md:ml-72 p-4 h-full md:mt-20">
+                @yield('status')
+
                 @include('layouts.breadcrumbs')
                 
                 @yield('content')

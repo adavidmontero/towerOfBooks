@@ -28,8 +28,7 @@
         <header class="bg-red-900 py-5 shadow-md">
             <div class="container mx-auto flex justify-between items-center px-4">
                 <div>
-                    <a href="{{ url('/book') }}" class="flex items-center font-logo text-3xl text-white">
-                        <img src="{{ asset('./images/2909611-ffffff.svg') }}" class="w-10 h-10 -mt-2">
+                    <a href="{{ url('/login') }}" class="flex items-center font-logo text-3xl text-white">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>

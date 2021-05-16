@@ -27,7 +27,7 @@
     <div id="app">
         {{-- <header class="bg-red-900 py-4 shadow-md">
             <div class="container mx-auto flex justify-center">
-                <a href="{{ url('/book') }}" class="flex items-center font-logo text-3xl text-white">
+                <a href="{{ url('/reader') }}" class="flex items-center font-logo text-3xl text-white">
                     <img src="{{ asset('./images/2909611-ffffff.svg') }}" class="w-10 h-10 -mt-1">
                     {{ config('app.name', 'Laravel') }}
                     <img src="{{ asset('./images/2909611-ffffff.svg') }}" class="w-10 h-10 -mt-1">

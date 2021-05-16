@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Auth::routes();
@@ -42,6 +42,6 @@ Route::middleware(['auth', 'role:Reader'])->group(function () {
         ]);
     });
     Route::resource('profile', 'ProfileController');
-    Route::get('edit_pass/{user}/edit', 'UserController@edit_password')->name('user.edit_pass');
+    Route::get('/edit_pass/{user}/edit', 'UserController@edit_password')->name('user.edit_pass');
     Route::put('/edit_pass/{user}', 'UserController@update_password')->name('user.update_pass');
 });

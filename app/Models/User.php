@@ -52,6 +52,12 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
+    // 1 usuario tiene muchos prestamos
+    public function loans()
+    {
+        return $this->hasMany(Loan::class);
+    }
+
     /** ALMACENAMIENTO */
 
     public function saveUser($request)

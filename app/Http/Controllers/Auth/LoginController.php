@@ -42,7 +42,7 @@ class LoginController extends Controller
     {
         if (auth()->user()->hasRole('Reader')) {
             $redirectTo = '/reader';
-        } else {
+        } else if(auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Secretary')) {
             $redirectTo = '/home';
         }
 
