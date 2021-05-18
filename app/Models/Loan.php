@@ -9,6 +9,10 @@ class Loan extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'start_date', 'limit_date', 'user_id','copy_id'
+    ];
+
     /** RELACIONES */
 
     // 1 prestamo pertenece a un usuario

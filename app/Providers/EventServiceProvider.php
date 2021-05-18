@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\CopyWasLoaned;
 use App\Events\UserWasCreated;
 use App\Listeners\CreateProfile;
+use App\Listeners\UpdateCopyStatus;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         UserWasCreated::class => [
             CreateProfile::class,
+        ],
+        CopyWasLoaned::class => [
+            UpdateCopyStatus::class,
         ],
     ];
 

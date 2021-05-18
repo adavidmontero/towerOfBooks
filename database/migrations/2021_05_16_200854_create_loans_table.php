@@ -16,7 +16,8 @@ class CreateLoansTable extends Migration
         Schema::create('loans', function (Blueprint $table) {
             $table->id();
             $table->date('start_date')->default(now()->toDateString());
-            $table->date('end_date')->default(now()->addDays(30)->toDateString());
+            $table->date('limit_date')->default(now()->addDays(30)->toDateString());
+            $table->date('devolution_date')->nullable();
             $table->foreignId('copy_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();

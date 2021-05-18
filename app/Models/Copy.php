@@ -13,7 +13,7 @@ class Copy extends Model
     use HasFactory;
 
     protected $fillable = [
-        'copy_id', 'editorial', 'pages', 'image_url', 'book_id'
+        'copy_id', 'editorial', 'pages', 'image_url', 'book_id', 'state'
     ];
 
     /** RELACIONES */

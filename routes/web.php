@@ -29,6 +29,7 @@ Route::middleware(['auth', 'role:Admin|Secretary'])->group(function () {
     Route::resource('category', 'CategoryController');
     Route::resource('copy', 'CopyController');
     Route::resource('genre', 'GenreController');
+    Route::resource('loan', 'LoanController');
     Route::resource('permission', 'PermissionController');
     Route::resource('role', 'RoleController');
     Route::resource('user', 'UserController');

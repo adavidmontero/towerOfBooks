@@ -14,7 +14,7 @@
     <div class="my-6 bg-white rounded-md shadow-md p-4">
         <div class="flex items-center justify-between">
             <div class="flex items-center">
-                <svg class="w-8 h-8 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.495 2h16.505v-2h-17c-1.656 0-3 1.343-3 3v18c0 1.657 1.344 3 3 3h17v-20h-16.505c-1.376 0-1.376-2 0-2zm7.561 7.273c.438-.372 1.084-.363 1.446.018.361.382.302.992-.135 1.364-.437.372-1.084.364-1.446-.018-.361-.382-.302-.992.135-1.364zm.583 4.567c-.627 1.508-1.075 2.525-1.331 3.31-.374 1.144.569.68 1.493-.173.127.206.167.271.294.508-2.054 1.953-4.331 2.125-3.623-.12.464-1.469 1.342-3.229 1.496-3.675.225-.646-.174-.934-1.429.171l-.278-.525c1.431-1.558 4.381-1.91 3.378.504z"/></svg>
+                <svg class="w-8 h-8 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M23 5v13.883l-1 .117v-16c-3.895.119-7.505.762-10.002 2.316-2.496-1.554-6.102-2.197-9.998-2.316v16l-1-.117v-13.883h-1v15h9.057c1.479 0 1.641 1 2.941 1 1.304 0 1.461-1 2.942-1h9.06v-15h-1zm-12 13.645c-1.946-.772-4.137-1.269-7-1.484v-12.051c2.352.197 4.996.675 7 1.922v11.613zm9-1.484c-2.863.215-5.054.712-7 1.484v-11.613c2.004-1.247 4.648-1.725 7-1.922v12.051z"/></svg>
                 <h2 class="font-titles font-semibold text-xl">Listado de Ejemplares</h2>
             </div>
             <!-- Start Modal -->
@@ -168,7 +168,15 @@
                                         <span class="px-2 py-1 text-xs bg-green-200 text-green-800 font-semibold rounded-lg">
                                             {{ $copy->state }}
                                         </span>
-                                    @else
+                                    @elseif($copy->state === 'Prestado')
+                                        <span class="px-2 py-1 text-xs bg-orange-200 text-orange-800 font-semibold rounded-lg">
+                                            {{ $copy->state }}
+                                        </span>
+                                    @elseif($copy->state === 'Retrasado')
+                                        <span class="px-2 py-1 text-xs bg-red-200 text-red-800 font-semibold rounded-lg">
+                                            {{ $copy->state }}
+                                        </span>
+                                    @elseif($copy->state === 'Inactivo')
                                         <span class="px-2 py-1 text-xs bg-gray-200 text-gray-800 font-semibold rounded-lg">
                                             {{ $copy->state }}
                                         </span>
