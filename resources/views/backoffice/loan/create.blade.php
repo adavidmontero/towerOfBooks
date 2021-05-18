@@ -79,7 +79,7 @@
                 @enderror
             </div>
 
-            <div class="flex flex-wrap px-6 sm:px-10 my-6">
+            {{-- <div class="flex flex-wrap px-6 sm:px-10 my-6">
                 <label for="start_date" class="block text-gray-700 text-sm font-bold mb-2 md:mb-1">
                     Fecha de préstamo:
                 </label>
@@ -92,7 +92,7 @@
                         {{ $message }}
                     </small>
                 @enderror
-            </div>
+            </div> --}}
 
             <div class="flex flex-wrap px-6 sm:px-10 my-6">
                 <label for="limit_date" class="block text-gray-700 text-sm font-bold mb-2 md:mb-1">

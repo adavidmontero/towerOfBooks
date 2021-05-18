@@ -30,6 +30,7 @@ Route::middleware(['auth', 'role:Admin|Secretary'])->group(function () {
     Route::resource('copy', 'CopyController');
     Route::resource('genre', 'GenreController');
     Route::resource('loan', 'LoanController');
+    Route::put('/update_devolution/{loan}', 'LoanController@update_devolution')->name('loan.update_devolution');
     Route::resource('permission', 'PermissionController');
     Route::resource('role', 'RoleController');
     Route::resource('user', 'UserController');
@@ -39,9 +40,12 @@ Route::middleware(['auth', 'role:Admin|Secretary'])->group(function () {
 Route::middleware(['auth', 'role:Reader'])->group(function () {
     Route::get('/reader', function() {
         return view('frontoffice.reader', [
-            'copies' => Copy::paginate(20)
+            'copies' => Copy::paginate(20)->filter(function ($copy) {
+                return $copy->state === 'Disponible';
+            })
         ]);
     });
+    Route::get('/front/loan', 'LoanController@front_index')->name('loan.front_index');
     Route::resource('profile', 'ProfileController');
     Route::get('/edit_pass/{user}/edit', 'UserController@edit_password')->name('user.edit_pass');
     Route::put('/edit_pass/{user}', 'UserController@update_password')->name('user.update_pass');

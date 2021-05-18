@@ -31,7 +31,15 @@
                             <p class="inline-block mt-1 px-2 py-1 text-xs bg-green-200 text-green-800 font-semibold rounded-lg">
                                 {{ $copy->state }}
                             </p>
-                        @else
+                        @elseif($copy->state === 'Prestado')
+                            <p class="inline-block mt-1 px-2 py-1 text-xs bg-orange-200 text-orange-800 font-semibold rounded-lg">
+                                {{ $copy->state }}
+                            </p>
+                        @elseif($copy->state === 'Retrasado')
+                            <p class="inline-block mt-1 px-2 py-1 text-xs bg-red-200 text-red-800 font-semibold rounded-lg">
+                                {{ $copy->state }}
+                            </p>
+                        @elseif($copy->state === 'Inactivo')
                             <p class="inline-block mt-1 px-2 py-1 text-xs bg-gray-200 text-gray-800 font-semibold rounded-lg">
                                 {{ $copy->state }}
                             </p>

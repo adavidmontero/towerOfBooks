@@ -19,7 +19,14 @@ class LoanController extends Controller
     public function index()
     {
         return view('backoffice.loan.index', [
-            'loans' => Loan::paginate(8)
+            'loans' => Loan::latest()->paginate(8)
+        ]);
+    }
+
+    public function front_index()
+    {
+        return view('frontoffice.loan.index', [
+            'loans' => Loan::where('user_id', auth()->user()->id)->latest()->paginate(8)
         ]);
     }
 
@@ -52,30 +59,29 @@ class LoanController extends Controller
         $request->validate([
             'reader' => 'required|numeric',
             'copy' => 'required|numeric',
-            'start_date' => 'required',
             'limit_date' => 'required'
         ]);
 
-        if($request['start_date'] < now()->toDateString()) {
+        if(Carbon::now()->toDateString() < now()->toDateString()) {
             return redirect()->back()->with('error', '¡Error! la fecha de préstamo debe ser mayor a la actual');
-        } elseif ($request['limit_date'] < $request['start_date']) {
+        } elseif ($request['limit_date'] < Carbon::now()->toDateString()) {
             return redirect()->back()->with('error', '¡Error! la fecha límite de devolución debe ser mayor a la fecha del préstamo');
-        } elseif (Carbon::parse($request['limit_date'])->diffInDays(Carbon::parse($request['start_date'])) > 30) {
+        } elseif (Carbon::parse($request['limit_date'])->diffInDays(Carbon::parse(Carbon::now()->toDateString())) > 30) {
             return redirect()->back()->with('error', '¡Error! el préstamo no puede ser mayor a 30 días');
         }
 
         Loan::create([
-            'start_date' => $request['start_date'],
+            'start_date' => Carbon::now()->toDateString(),
             'limit_date' => $request['limit_date'],
             'user_id' => $request['reader'],
             'copy_id' => $request['copy']
         ]);
 
-        if($request['start_date'] === now()->toDateString()) {
+        if(Carbon::now()->toDateString() === now()->toDateString()) {
             CopyWasLoaned::dispatch($request['copy']);
         }
 
-        return redirect()->back()->with('success', '¡El préstamo fue creado exitosamente!');
+        return redirect()->route('loan.index')->with('success', '¡El préstamo fue creado exitosamente!');
     }
 
     /**
@@ -86,7 +92,7 @@ class LoanController extends Controller
      */
     public function show(Loan $loan)
     {
-        //
+        return view('backoffice.loan.show', compact('loan'));
     }
 
     /**
@@ -120,6 +126,25 @@ class LoanController extends Controller
      */
     public function destroy(Loan $loan)
     {
-        //
+        $loan->copy()->update([
+            'state' => 'Disponible'
+        ]);
+
+        $loan->delete();
+
+        return redirect()->route('loan.index')->with('success', '¡El préstamo ha sido cancelado exitosamente!');
+    }
+
+    public function update_devolution (Request $request, Loan $loan)
+    {
+        $loan->update([
+            'devolution_date' => Carbon::now()->toDateString()
+        ]);
+
+        $loan->copy()->update([
+            'state' => 'Disponible'
+        ]);
+
+        return redirect()->back()->with('success', '¡La copia ha sido devuelta exitosamente!');
     }
 }

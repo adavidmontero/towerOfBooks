@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Book;
 use App\Models\Copy;
+use App\Models\Loan;
 use App\Models\User;
 use App\Models\Genre;
 use App\Models\Author;
@@ -40,6 +41,7 @@ class HomeController extends Controller
             ->setLabels(Role::all()->pluck('display_name')->toArray());
 
         return view('home', [
+            'loans' => Loan::count(),
             'users' => User::count(),
             'roles' => Role::count(),
             'permissions' => Permission::count(),

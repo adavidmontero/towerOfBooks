@@ -45,7 +45,7 @@ class VerifyLoan extends Command
         });
 
         foreach ($loans as $loan) {
-            if($loan->limit_date < Carbon::now()->toDateString()) {
+            if ($loan->limit_date < Carbon::now()->toDateString()) {
                 Copy::findOrFail($loan->copy_id)->update([
                     'state' => 'Retrasado'
                 ]);
