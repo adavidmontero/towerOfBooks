@@ -3,3 +3,33 @@
 @import "tailwindcss/components";
 
 @import "tailwindcss/utilities";
+
+aside::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+aside::-webkit-scrollbar:vertical {
+    width:10px;
+}
+
+aside::-webkit-scrollbar-button:increment,aside::-webkit-scrollbar-button {
+    display: none;
+}
+
+aside::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+
+aside::-webkit-scrollbar-thumb {
+    background-color: #797979;
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;
+}
+
+aside::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+.bg-main {
+    background-image: url('../../public/images/bg.png');
+}

@@ -74,7 +74,7 @@
                                                     País:
                                                 </label>
 
-                                                <select class="form-input w-full border border-gray-400 @error('genre') border-red-500 @enderror" 
+                                                <select class="form-input w-full border border-gray-400 @error('genre') border-red-500 @enderror"
                                                     name="country" id="country" autofocus>
                                                     <option value="" disabled selected>--Seleccione un país--</option>
                                                     @foreach ($countries as $country)
@@ -107,7 +107,7 @@
                                                 <input id="image" type="file"
                                                     class="form-input w-full border border-gray-400 @error('image') border-red-500 @enderror" name="image"
                                                     value="{{ old('image') }}" {{-- required --}} autocomplete="image" autofocus>
-                                                    
+
                                                 @error('image')
                                                     <small class="text-red-500 text-xs italic mt-2">
                                                         {{ $message }}
@@ -134,8 +134,8 @@
             <!-- End Modal -->
         </div>
         <p class="font-bodies text-justify pt-4 leading-6">
-            Gestiona todos los autores registrados en el sistema. Como administrador y 
-            secretario podrás visualizar los autores existentes. Además podrás agregar 
+            Gestiona todos los autores registrados en el sistema. Como administrador y
+            secretario podrás visualizar los autores existentes. Además podrás agregar
             nuevos autores según lo requieras.
         </p>
     </div>

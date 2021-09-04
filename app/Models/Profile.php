@@ -55,7 +55,7 @@ class Profile extends Model
             $ruta_imagen = $request->file('image')->store('upload-profile', 'public');
 
             //Recortamos la imagen para que sea cuadrada
-            $img = Image::make(public_path("storage/{$ruta_imagen}"))->fit(300, 300);
+            $img = Image::make(storage_path().'/app/public/'.$ruta_imagen)->fit(300, 300);
             //Guardamos ese cambio
             $img->save();
         }

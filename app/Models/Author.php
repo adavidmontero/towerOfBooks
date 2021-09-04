@@ -19,7 +19,7 @@ class Author extends Model
     /* RELACIONES */
 
     //Un autor tiene muchos libros
-    public function books() 
+    public function books()
     {
         return $this->hasMany(Book::class);
     }
@@ -31,7 +31,7 @@ class Author extends Model
             //Obtenemos la ruta de la imagen
             $ruta_imagen = $request->file('image')->store('upload-autores', 'public');
             //Recortamos la imagen para que sea cuadrada
-            $img = Image::make(public_path("storage/{$ruta_imagen}"))->fit(300, 300);
+            $img = Image::make(storage_path().'/app/public/'.$ruta_imagen)->fit(300, 300);
             //Guardamos la imagen en el directorio
             $img->save();
         }
@@ -44,7 +44,7 @@ class Author extends Model
             'dod' => $request['dod'],
             //Si el usuario no sube una imagen se guarda la url de una por defecto
             'image_url' => (isset($ruta_imagen))
-                ? 'storage/' . $ruta_imagen 
+                ? 'storage/' . $ruta_imagen
                 : './images/placeholder-profile-male-500x500.png',
         ]);
 
@@ -66,7 +66,7 @@ class Author extends Model
             $ruta_imagen = $request->file('image')->store('upload-autores', 'public');
 
             //Recortamos la imagen para que sea cuadrada
-            $img = Image::make(public_path("storage/{$ruta_imagen}"))->fit(300, 300);
+            $img = Image::make(storage_path().'/app/public/'.$ruta_imagen)->fit(300, 300);
             //Guardamos ese cambio
             $img->save();
         }

@@ -46,7 +46,7 @@ class Copy extends Model
             //Obtenemos la ruta de la imagen
             $ruta_imagen = $request->file('image')->store('upload-copies', 'public');
             //Recortamos la imagen para que se ajuste a lo requerido
-            $img = Image::make(public_path("storage/{$ruta_imagen}"))->fit(300, 450);
+            $img = Image::make(storage_path().'/app/public/'.$ruta_imagen)->fit(300, 450);
             //Guardamos la imagen en el directorio
             $img->save();
         }
@@ -89,7 +89,7 @@ class Copy extends Model
             $ruta_imagen = $request->file('image')->store('upload-copies', 'public');
 
             //Recortamos la imagen para que sea cuadrada
-            $img = Image::make(public_path("storage/{$ruta_imagen}"))->fit(300, 450);
+            $img = Image::make(storage_path().'/app/public/'.$ruta_imagen)->fit(300, 450);
             //Guardamos ese cambio
             $img->save();
         }
@@ -101,6 +101,6 @@ class Copy extends Model
             'pages' => $request['pages'],
             'image_url' => (isset($ruta_imagen)) ? 'storage/' . $ruta_imagen : $copy['image_url'],
             'book_id' => $request['book']
-        ]); 
+        ]);
     }
 }
