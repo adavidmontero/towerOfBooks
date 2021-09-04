@@ -3,6 +3,7 @@
 use App\Models\Copy;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Artisan::call('storage:link');
 
 Route::get('/', function () {
     return redirect()->route('login');
